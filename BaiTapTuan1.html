@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập tuần 1</title>
+</head>
+<body>
+<h3>Bài 1</h3>
+<button onclick="square()">Nhập số</button>
+<h3>Bài 2</h3>
+<button onclick="multiAB()">Thực thi S=a*b</button>
+<h3>Bài 3</h3>
+<label for="numA">Nhập vào số a</label>
+<input type="number" name="" id="numA" onchange="squareA()">
+<p>Chu vi của hình vuông độ dài cạnh a là: </p><p id="perimeter"></p>
+<p>Diện tích hình vuông độ dài cạnh a là: </p><p id="area"></p>
+<br>
+<label for="numB">Nhập vào số b</label>
+<input type="number" name="" id="numB">
+<p>Bình phương của a là: </p><p id="squareA"></p>
+<p>Bình phương của b là: </p><p id="squareB"></p>
+<p>Tổng các số từ a -> b là: </p><p id="totalAB"></p>
+<br>
+<label for="yearA">Nhập số năm a</label>
+<input type="number" name="" id="yearA">
+<p>Năm a thuộc thế kỷ: </p><p id="centuryA"></p>
+<br>
+<label for="numC">Nhập vào số c</label>
+<input type="number" name="" id="numC">
+<p>a b c là 3 cạnh của tam giác thường: </p> <p id="abcCheck1"></p>
+<p>a b c là 3 cạnh của tam giác cân: </p> <p id="abcCheck2"></p>
+<p>a b c là 3 cạnh của tam giác đều: </p> <p id="abcCheck3"></p>
+<p>a b c là 3 cạnh của tam giác vuông: </p> <p id="abcCheck4"></p>
+<script>
+    // Bài 1
+    function square() {
+        let numSquare = +prompt('Nhập giá trị cần tính bình phương');
+        alert('Bình phương của số vừa nhập là: ' + Math.pow(numSquare,2));
+    }
+    // Bài 2
+    function multiAB() {
+        let numa = prompt('Nhập giá trị a');
+        let numb = prompt('Nhập giá trị b');
+        alert('Tích của a và b là S: ' + numa*numb);
+    }
+    // Bài 3
+    function squareA() {
+        let numA = document.getElementById('numA').value;
+        document.getElementById('perimeter').innerText = numA*4;
+        document.getElementById('area').innerText = Math.pow(numA,2);
+    }
+</script>
+</body>
+</html>
