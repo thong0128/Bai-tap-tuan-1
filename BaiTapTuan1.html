@@ -11,26 +11,26 @@
 <button onclick="multiAB()">Thực thi S=a*b</button>
 <h3>Bài 3</h3>
 <label for="numA">Nhập vào số a</label>
-<input type="number" name="" id="numA" onchange="squareA()">
-<p>Chu vi của hình vuông độ dài cạnh a là: </p><p id="perimeter"></p>
-<p>Diện tích hình vuông độ dài cạnh a là: </p><p id="area"></p>
+<input type="number" name="" id="numA" onchange="bai3()">
+<p>Chu vi của hình vuông độ dài cạnh a là: <span id="perimeter">...</span></p>
+<p>Diện tích hình vuông độ dài cạnh a là: <span id="area">...</span></p>
 <br>
 <label for="numB">Nhập vào số b</label>
-<input type="number" name="" id="numB">
-<p>Bình phương của a là: </p><p id="squareA"></p>
-<p>Bình phương của b là: </p><p id="squareB"></p>
-<p>Tổng các số từ a -> b là: </p><p id="totalAB"></p>
+<input type="number" name="" id="numB" onchange="bai3()">
+<p>Bình phương của a là: <span id="squareA">...</span></p>
+<p>Bình phương của b là: <span id="squareB">...</span></p>
+<p>Tổng các số từ a -> b là: <span id="totalAB">...</span></p>
 <br>
 <label for="yearA">Nhập số năm a</label>
-<input type="number" name="" id="yearA">
-<p>Năm a thuộc thế kỷ: </p><p id="centuryA"></p>
+<input type="number" name="" id="yearA" onchange="getCentury()">
+<p>Năm a thuộc thế kỷ thứ: <span id="centuryA">...</span></p>
 <br>
 <label for="numC">Nhập vào số c</label>
-<input type="number" name="" id="numC">
-<p>a b c là 3 cạnh của tam giác thường: </p> <p id="abcCheck1"></p>
-<p>a b c là 3 cạnh của tam giác cân: </p> <p id="abcCheck2"></p>
-<p>a b c là 3 cạnh của tam giác đều: </p> <p id="abcCheck3"></p>
-<p>a b c là 3 cạnh của tam giác vuông: </p> <p id="abcCheck4"></p>
+<input type="number" name="" id="numC" onchange="bai3()">
+<p>Các số a b c <span id="abcCheck1">...</span> 3 cạnh của tam giác thường.</p>
+<p>Các số a b c <span id="abcCheck2">...</span> 3 cạnh của tam giác cân.</p>
+<p>Các số a b c <span id="abcCheck3">...</span> 3 cạnh của tam giác đều.</p>
+<p>Các số a b c <span id="abcCheck4">...</span> 3 cạnh của tam giác vuông.</p>
 <script>
     // Bài 1
     function square() {
@@ -44,10 +44,56 @@
         alert('Tích của a và b là S: ' + numa*numb);
     }
     // Bài 3
-    function squareA() {
-        let numA = document.getElementById('numA').value;
+    function aA() {
+        let numA = +document.getElementById('numA').value;
         document.getElementById('perimeter').innerText = numA*4;
         document.getElementById('area').innerText = Math.pow(numA,2);
+    }
+    function bB() {
+        let numA = +document.getElementById('numA').value;
+        let numB = +document.getElementById('numB').value;
+        document.getElementById('squareA').innerText = Math.pow(numA,2);
+        document.getElementById('squareB').innerText = Math.pow(numB,2);
+        document.getElementById('totalAB').innerText = (numA + numB) * (numB - numA + 1)/2;
+    }
+    function getCentury() {
+        let yearA = +document.getElementById("yearA").value;
+        document.getElementById("centuryA").innerText = Math.ceil(yearA/100);
+    }
+    function triangle() {
+        let sideA = +document.getElementById('numA').value;
+        let sideB = +document.getElementById('numB').value;
+        let sideC = +document.getElementById('numC').value;
+        if ((sideA + sideB) > sideC && (sideA + sideC) > sideB && (sideC + sideB) > sideA ) {
+            document.getElementById("abcCheck1").innerText = "là";
+            if (sideA === sideB || sideA === sideC || sideB === sideC) {
+                document.getElementById('abcCheck2').innerText = 'là';
+                if (sideA === sideB && sideA === sideC) {
+                    document.getElementById('abcCheck3').innerText = 'là';
+                }else {
+                    document.getElementById('abcCheck3').innerText = 'không phải là';
+                }
+            }else {
+                document.getElementById('abcCheck2').innerText = 'không phải là';
+                document.getElementById('abcCheck3').innerText = 'không phải là';
+            }
+            if (Math.abs(sideA*sideA + sideB*sideB - sideC*sideC) < 0.2 || Math.abs(sideA*sideA + sideC*sideC - sideB*sideB) < 0.2 || Math.abs(sideC*sideC + sideB*sideB - sideA*sideA) < 0.2) {
+                document.getElementById('abcCheck4').innerText = 'là';
+            }else {
+                document.getElementById('abcCheck4').innerText = 'không phải là';
+            }
+        }else {
+            document.getElementById('abcCheck1').innerText = 'không phải là';
+            document.getElementById('abcCheck2').innerText = 'không phải là';
+            document.getElementById('abcCheck3').innerText = 'không phải là';
+            document.getElementById('abcCheck4').innerText = 'không phải là';
+        }
+
+    }
+    function bai3() {
+       aA();
+       bB();
+       triangle();
     }
 </script>
 </body>
